@@ -1,0 +1,4 @@
+---
+- hosts: c6
+  roles:
+     - centos6

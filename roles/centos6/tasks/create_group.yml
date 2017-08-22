@@ -1,0 +1,7 @@
+- name: create group
+  group:
+    name: v123456
+    gid: 1123456
+    state: present
+  become: true
+

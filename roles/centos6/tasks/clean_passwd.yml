@@ -1,0 +1,26 @@
+- name: copy helper script
+  copy:
+    src: clean_passwd.sh
+    dest: /tmp
+    owner: root
+    group: root
+    mode: 0755
+  become: true
+- name: create new passwd file with helper script
+  command: /tmp/clean_passwd.sh /etc/passwd /tmp/passwd
+- name: replace existing passwd
+  command: mv /tmp/passwd /etc/passwd
+  become: true
+- name: set passwd permissions
+  file:
+    path: /etc/passwd
+    owner: root
+    group: root
+    mode: 0644
+  become: true
+- name: remove helper script
+  file:
+    path: /tmp/clean_passwd.sh
+    state: absent
+  become: true
+

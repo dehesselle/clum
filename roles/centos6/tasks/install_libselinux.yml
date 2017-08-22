@@ -1,0 +1,5 @@
+- name: install SELinux support for Python
+  yum:
+    name: libselinux-python
+    state: present
+  become: true

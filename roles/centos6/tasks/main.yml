@@ -1,0 +1,4 @@
+- include: install_libselinux.yml
+- include: clean_passwd.yml
+- include: create_group.yml
+- include: create_user.yml
