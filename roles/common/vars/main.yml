@@ -1,0 +1,20 @@
+central:
+  gid: 100001
+  gname: central
+gdis:
+  gid: 100002
+  gname: gdis
+v789012:
+  uid: 1789012
+  uname: v789012
+  groups:
+    - "{{ gdis }}"
+    - "{{ central }}"
+  rname: Jane Doe
+v123456:
+  uid: 1123456
+  uname: v123456
+  groups:
+    - "{{ central }}"
+  rname: John Doe
+

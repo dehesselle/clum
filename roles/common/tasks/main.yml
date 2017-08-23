@@ -1,0 +1,3 @@
+- include: install_libselinux.yml
+- include: clean_passwd.yml clean_file=/etc/passwd
+- include: clean_passwd.yml clean_file=/etc/group

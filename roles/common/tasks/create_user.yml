@@ -1,0 +1,21 @@
+- name: create primary group for user {{ item.uname }}
+  include: create_group.yml gname="{{ item.uname }}" gid="{{ item.uid }}"
+- name: create secondary groups for user {{ item.uname }}
+  include: create_group.yml gname="{{ item2.gname }}" gid="{{ item2.gid }}"
+  with_items:
+    - "{{ item.groups }}"
+  loop_control:
+    loop_var: item2
+- name: create user {{ item.uname }}
+  user:
+    name: "{{ item.uname}}"
+    comment: "{{ item.rname }}"
+    uid: "{{ item.uid }}"
+    group: "{{ item.uname }}"
+    groups: "{{ item.groups|map(attribute='gname')|list }}"
+    createhome: yes
+    shell: /bin/bash
+    password: $6$OLXFYXdUhkfqAVyU$DUG2pvNERMzMzALXF0jVu6NQDk2x7rt2XX5Uv6vLkjgsjjemdyXt6oH.uNX32dN1SVjFqNDQtdIpfpAxmoL9P.
+    state: present
+    update_password: on_create
+  become: true

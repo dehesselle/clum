@@ -1,5 +1,4 @@
-- include: install_libselinux.yml
-- include: clean_passwd.yml clean_file=/etc/passwd
-- include: clean_passwd.yml clean_file=/etc/group
-- include: create_group.yml
-- include: create_user.yml
+- include: ../../common/tasks/create_user.yml
+  with_items:
+    - "{{ v123456 }}"
+    - "{{ v789012 }}"
