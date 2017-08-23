@@ -1,4 +1,7 @@
-- name: create group
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
+- name: create group {{ gname }}
   group:
     name: "{{ gname }}"
     gid: "{{ gid }}"

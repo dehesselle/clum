@@ -1,3 +1,6 @@
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
 - name: install SELinux support for Python
   yum:
     name: libselinux-python

@@ -1,3 +1,6 @@
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
 - name: create primary group for user {{ item.uname }}
   include: create_group.yml gname="{{ item.uname }}" gid="{{ item.uid }}"
 - name: create secondary groups for user {{ item.uname }}

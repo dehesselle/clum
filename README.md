@@ -1,1 +1,1 @@
-distributed local user management
+centralized local user management

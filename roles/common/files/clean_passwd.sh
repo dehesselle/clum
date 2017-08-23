@@ -1,7 +1,14 @@
 #!/usr/bin/env bash
+#
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
 
 function clean_passwd
 {
+#  This function is meant to create versions of /etc/passwd and
+#  /etc/group without entries that have a gid or uid above 1000000.
+
    local source_file=$1
    local target_file=$2
 

@@ -1,4 +1,7 @@
-- name: copy helper script
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
+- name: copy helper script to clean {{ clean_file }}
   copy:
     src: clean_passwd.sh
     dest: /tmp
@@ -6,12 +9,12 @@
     group: root
     mode: 0755
   become: true
-- name: create cleansed temporary file with helper script
+- name: create cleansed version of {{ clean_file }}
   command: /tmp/clean_passwd.sh {{ clean_file }} /tmp/passwd
-- name: replace existing {{ clean_file }}
+- name: install cleansed version of {{ clean_file }}
   command: mv /tmp/passwd {{ clean_file }}
   become: true
-- name: set {{ clean_file }} permissions
+- name: set permissions for {{ clean_file }}
   file:
     path: "{{ clean_file }}"
     owner: root
