@@ -1,7 +1,0 @@
-# Centralized Local User Management
-# https://github.com/dehesselle/clum
-#
----
-- hosts: c6
-  roles:
-     - centos6

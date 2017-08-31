@@ -1,0 +1,10 @@
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
+# This is an example role that shows how to assign users
+# to a server.
+#
+---
+- hosts: myhosts
+  roles:
+     - myserver
