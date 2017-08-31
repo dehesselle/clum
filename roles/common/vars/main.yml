@@ -1,23 +1,31 @@
 # Centralized Local User Management
 # https://github.com/dehesselle/clum
 #
-central:
-  gid: 100001
-  gname: central
-gdis:
-  gid: 100002
-  gname: gdis
-v789012:
-  uid: 1789012
-  uname: v789012
-  groups:
-    - "{{ gdis }}"
-    - "{{ central }}"
-  rname: Jane Doe
-v123456:
-  uid: 1123456
-  uname: v123456
-  groups:
-    - "{{ central }}"
-  rname: John Doe
-
+# See the examples below on how to add your users and 
+# groups to this file.
+#
+# groups
+#mygroup1:
+#  gid: 10001
+#gname: mygroup1
+#mygroup2:
+#  gid: 10002
+#  gname: mygroup2
+#mygroup3:
+#  gid: 10003
+#  gname: mygroup3
+##
+# users
+#u224711:
+#  uid: 1224711
+#  uname: u224711
+#  rname: John Doe
+#  groups:
+#    - "{{ mygroup1 }}"
+#u220815:
+#  uid: 1220815
+#  uname: u220815
+#  rname: Jane Doe
+#  groups:
+#    - "{{ mygroup2 }}"
+#    - "{{ mygroup3 }}"
