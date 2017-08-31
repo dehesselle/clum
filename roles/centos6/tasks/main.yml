@@ -1,7 +1,10 @@
 # Centralized Local User Management
 # https://github.com/dehesselle/clum
 #
+# This is how you assign users (from ../../common/vars/main.yml)
+# to your server.
+#
 - include: ../../common/tasks/create_user.yml
   with_items:
-    - "{{ v123456 }}"
-    - "{{ v789012 }}"
+    - "{{ u220815 }}"
+    - "{{ u224711 }}"
