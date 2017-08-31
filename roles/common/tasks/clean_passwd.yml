@@ -10,7 +10,7 @@
     mode: 0755
   become: true
 - name: create cleansed version of {{ clean_file }}
-  command: /tmp/clean_passwd.sh {{ clean_file }} /tmp/passwd
+  command: /tmp/clean_passwd.sh {{ clean_file }} /tmp/passwd {{ clean_above }}
 - name: install cleansed version of {{ clean_file }}
   command: mv /tmp/passwd {{ clean_file }}
   become: true

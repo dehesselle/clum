@@ -2,5 +2,5 @@
 # https://github.com/dehesselle/clum
 #
 - include: install_libselinux.yml
-- include: clean_passwd.yml clean_file=/etc/passwd
-- include: clean_passwd.yml clean_file=/etc/group
+- include: clean_passwd.yml clean_file=/etc/passwd clean_above=1000000
+- include: clean_passwd.yml clean_file=/etc/group clean_above=100000

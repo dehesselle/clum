@@ -6,13 +6,13 @@
 #
 # groups
 #mygroup1:
-#  gid: 10001
+#  gid: 100001
 #gname: mygroup1
 #mygroup2:
-#  gid: 10002
+#  gid: 100002
 #  gname: mygroup2
 #mygroup3:
-#  gid: 10003
+#  gid: 100003
 #  gname: mygroup3
 ##
 # users
