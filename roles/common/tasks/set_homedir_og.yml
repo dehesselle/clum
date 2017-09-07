@@ -1,0 +1,17 @@
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
+# home directory may have been created in a non-default location
+- name: check if home directory is in expected path
+  stat:
+    path: /home/{{ uname }}
+    register: home_dir
+- name: set owner and group for /home/{{ uname }}
+  file:
+    path: /home/{{ uname }}
+    owner: "{{ uname }}"
+    group: "{{ uname }}"
+    recurse: yes
+    state: directory
+  when: home_dir.stat.exists
+  become: true

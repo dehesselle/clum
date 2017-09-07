@@ -18,7 +18,16 @@
     groups: "{{ item.groups|map(attribute='gname')|list }}"
     createhome: yes
     shell: /bin/bash
-    password: $6$OLXFYXdUhkfqAVyU$DUG2pvNERMzMzALXF0jVu6NQDk2x7rt2XX5Uv6vLkjgsjjemdyXt6oH.uNX32dN1SVjFqNDQtdIpfpAxmoL9P.
+    # password = start123
+    password: >
+      $6$OLXFYXdUhkfqAVyU$DUG2pvNERMzMzAL
+      XF0jVu6NQDk2x7rt2XX5Uv6vLkjgsjjemdy
+      Xt6oH.uNX32dN1SVjFqNDQtdIpfpAxmoL9P.
     state: present
     update_password: on_create
   become: true
+  # In case of a pre-existing home directory we need to make sure it's owned
+  # by the user.
+- name: set owner and group for /home/{{ item.uname }}
+  include: set_homedir_og.yml uname="{{ item.uname }}"
+
