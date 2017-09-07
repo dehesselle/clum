@@ -5,7 +5,7 @@
 - name: check if home directory is in expected path
   stat:
     path: /home/{{ uname }}
-    register: home_dir
+  register: home_dir
 - name: set owner and group for /home/{{ uname }}
   file:
     path: /home/{{ uname }}
