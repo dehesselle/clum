@@ -7,4 +7,5 @@
     gid: "{{ gid }}"
     state: present
   become: true
+  when: gid|int >= clum_first_group.gid|int
 

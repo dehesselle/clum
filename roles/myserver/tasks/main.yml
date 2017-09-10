@@ -6,5 +6,4 @@
 #
 - include: ../../common/tasks/create_user.yml
   with_items:
-    - "{{ u220815 }}"
-    - "{{ u224711 }}"
+    - "{{ clum_first_user }}"

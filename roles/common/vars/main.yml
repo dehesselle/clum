@@ -1,19 +1,23 @@
 # Centralized Local User Management
 # https://github.com/dehesselle/clum
 #
-# See the examples below on how to add your users and 
-# groups to this file.
+# See the examples below on how to add your users and
+# groups to this file. Change the values for GID und UID
+# for clum_first_group and clum_first_user appropriately,
+# these values are used to identify groups and users
+# managed by CLUM.
 #
-# groups
+# custom groups: completely managed by CLUM
 #mygroup1:
 #  gid: 100001
-#gname: mygroup1
+#  gname: mygroup1
 #mygroup2:
 #  gid: 100002
 #  gname: mygroup2
-#mygroup3:
-#  gid: 100003
-#  gname: mygroup3
+# system groups: not created or removed by CLUM
+#wheel:
+#  gid: 1
+#  gname: wheel
 ##
 # users
 #u224711:
@@ -28,4 +32,13 @@
 #  rname: Jane Doe
 #  groups:
 #    - "{{ mygroup2 }}"
-#    - "{{ mygroup3 }}"
+#    - "{{ wheel }}"
+clum_first_group:
+  gid: 100000
+  gname: clum1grp
+clum_first_user:
+  uid: 1000000
+  uname: clum1usr
+  rname: CLUM First User
+  groups:
+    - "{{ clum_first_group }}"

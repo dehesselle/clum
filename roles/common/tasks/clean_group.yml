@@ -3,16 +3,16 @@
 #
 - name: copy helper script to clean {{ clean_file }}
   copy:
-    src: clean_passwd.sh
+    src: clean_group.sh
     dest: /tmp
     owner: root
     group: root
     mode: 0755
   become: true
 - name: create cleansed version of {{ clean_file }}
-  command: /tmp/clean_passwd.sh {{ clean_file }} /tmp/passwd {{ first_id }}
+  command: /tmp/clean_group.sh {{ clean_file }} /tmp/group {{ clum_first_user.uid }}
 - name: install cleansed version of {{ clean_file }}
-  command: mv /tmp/passwd {{ clean_file }}
+  command: mv /tmp/group {{ clean_file }}
   become: true
 - name: set permissions for {{ clean_file }}
   file:
@@ -23,7 +23,6 @@
   become: true
 - name: remove helper script
   file:
-    path: /tmp/clean_passwd.sh
+    path: /tmp/clean_group.sh
     state: absent
   become: true
-
