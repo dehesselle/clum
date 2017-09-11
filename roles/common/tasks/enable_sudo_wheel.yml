@@ -1,0 +1,9 @@
+# Centralized Local User Management
+# https://github.com/dehesselle/clum
+#
+- name: enable sudo privileges for wheel members
+  lineinfile:
+    path: /etc/sudoers
+    regexp: "^#?[\\s\\t]*%wheel[\\s\\t]*ALL=\\(ALL\\)[\\s\\t]*ALL"
+    line: "%wheel ALL=(ALL) ALL"
+  become: true
