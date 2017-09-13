@@ -6,12 +6,16 @@
   stat:
     path: /home/{{ uname }}
   register: home_dir
-- name: set owner and group for /home/{{ uname }}
+- name: get fully qualified and unlinked location
+  command: readlink -f /home/{{ uname }}
+  register: home_dir_target
+  when: home_dir.stat.exists
+- name: set owner and group for {{ home_dir_target.stdout }}
   file:
-    path: /home/{{ uname }}
+    path: "{{ home_dir_target.stdout }}"
     owner: "{{ uname }}"
     group: "{{ uname }}"
     recurse: yes
     state: directory
-  when: home_dir.stat.exists
+  when: home_dir_target.rc == 0
   become: true
