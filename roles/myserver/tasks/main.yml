@@ -6,4 +6,4 @@
 #
 - include: ../../common/tasks/create_user.yml
   with_items:
-    - "{{ clum_first_user }}"
+    - "{{ clum_first_user | combine(clum_first_user_myserver) }}"
