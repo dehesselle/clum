@@ -9,6 +9,16 @@
     - "{{ item.groups }}"
   loop_control:
     loop_var: item2
+# This looks like a workaround because it is. There is no way using the user
+# module without having it modify /etc/shadow. So we save the password here...
+- name: save a pre-existing password
+  command: grep "{{ item.uname }}:" /etc/shadow
+  register: get_password   # .rc=0 when matched; .rc=1 when no match
+  failed_when:
+    - get_password.rc > 1
+    - get_password.rc < 0
+  become: true
+# ...let the user module do its thing...
 - name: create user {{ item.uname }}
   user:
     name: "{{ item.uname}}"
@@ -21,10 +31,18 @@
     # password = start123
     password: $6$OLXFYXdUhkfqAVyU$DUG2pvNERMzMzALXF0jVu6NQDk2x7rt2XX5Uv6vLkjgsjjemdyXt6oH.uNX32dN1SVjFqNDQtdIpfpAxmoL9P.
     state: present
-    update_password: on_create
+    update_password: always
   become: true
-  # In case of a pre-existing home directory we need to make sure it's owned
-  # by the user.
+# ...and change it back.
+- name: restore a pre-existing password
+  lineinfile:
+    path: /etc/shadow
+    regexp: "{{ item.uname }}:"
+    line: "{{ get_password.stdout }}"
+  become: true
+  when: get_password.rc == 0   # only if there is a saved password
+# In case of a pre-existing home directory we need to make sure it's owned
+# by the user.
 - name: set owner and group for /home/{{ item.uname }}
   include: set_homedir_og.yml uname="{{ item.uname }}"
 
