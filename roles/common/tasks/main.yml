@@ -1,7 +1,7 @@
 # Centralized Local User Management
 # https://github.com/dehesselle/clum
 #
-- include: install_libselinux.yml
-- include: clean_group.yml clean_file=/etc/group
-- include: clean_passwd.yml clean_file=/etc/passwd first_id={{ clum_first_user.uid }}
-- include: clean_passwd.yml clean_file=/etc/group first_id={{ clum_first_group.gid }}
+- import_tasks: install_libselinux.yml
+- include_tasks: clean_group.yml clean_file=/etc/group
+- include_tasks: clean_passwd.yml clean_file=/etc/passwd first_id={{ clum_first_user.uid }}
+- include_tasks: clean_passwd.yml clean_file=/etc/group first_id={{ clum_first_group.gid }}

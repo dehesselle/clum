@@ -2,9 +2,9 @@
 # https://github.com/dehesselle/clum
 #
 - name: create primary group for user {{ item.uname }}
-  include: create_group.yml gname="{{ item.uname }}" gid="{{ item.uid }}"
+  include_tasks: create_group.yml gname="{{ item.uname }}" gid="{{ item.uid }}"
 - name: create secondary groups for user {{ item.uname }}
-  include: create_group.yml gname="{{ item2.gname }}" gid="{{ item2.gid }}"
+  include_tasks: create_group.yml gname="{{ item2.gname }}" gid="{{ item2.gid }}"
   with_items:
     - "{{ item.groups }}"
   loop_control:
@@ -44,5 +44,5 @@
 # In case of a pre-existing home directory we need to make sure it's owned
 # by the user.
 - name: set owner and group for /home/{{ item.uname }}
-  include: set_homedir_og.yml uname="{{ item.uname }}"
+  include_tasks: set_homedir_og.yml uname="{{ item.uname }}"
 
