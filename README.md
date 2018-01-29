@@ -6,6 +6,6 @@ You have a lot of Linux boxes running local authentication only, you do not want
 
 ## TBD
 documentation is not ready yet
-- Ansible 2.x
+- Ansible >= 2.4
 - scripts developed using bash 4.1.2
 - CentOS (yum)
